@@ -1,0 +1,30 @@
+{
+  "model": "ResNet18",
+  "version": "resnet18-eurosat-v1",
+  "classes": [
+    "AnnualCrop",
+    "Forest",
+    "Highway",
+    "Industrial",
+    "Residential",
+    "River",
+    "SeaLake"
+  ],
+  "input_size": [64, 64],
+  "channels": 3,
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "confidence_threshold": 0.6,
+  "frozen_eval": {
+    "accuracy": 0.8571,
+    "macro_f1": 0.8571,
+    "threshold_used_at_eval_time": 0.5,
+    "note": "Frozen eval_set run predates the 0.6 threshold decision. accuracy/macro_f1 above are argmax-based and unaffected by threshold (threshold only gates status=accepted/uncertain, not the prediction itself). Re-deriving accepted-only accuracy at 0.6 would require touching eval_set predictions again - do not do this; treat 0.6 as the deployment threshold going forward, informed by the validation sweep.",
+    "n_eval_tiles": 210
+  },
+  "checkpoint_file": "resnet18_eurosat_v1.pth",
+  "training_backbone": "frozen (only classifier head trained)",
+  "pretrained_source": "ImageNet1K_V1 (backbone weights only; final checkpoint is self-contained and requires no network access to load)"
+}

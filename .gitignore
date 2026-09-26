@@ -1,0 +1,11 @@
+venv/
+candidate_tiles/
+candidate_tiles_split/
+eval_set/
+eval_labels.csv
+*_weights.pt
+README.txt
+*.db
+*.sqlite
+*.sqlite3
+.env
